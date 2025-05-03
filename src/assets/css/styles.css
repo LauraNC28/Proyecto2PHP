@@ -1,0 +1,442 @@
+/* ===== VARIABLES GLOBALES ===== */
+:root {
+    --color-primario: #007bff;
+    --color-secundario: #333;
+    --color-texto: #444;
+    --color-fondo: #f8f9fa;
+    --color-acento: #17a2b8;
+    --sombra: 0 4px 8px rgba(0, 0, 0, 0.1);
+    --transicion: all 300ms ease-in-out;
+}
+
+/* ===== RESETEO Y ESTILOS GENERALES ===== */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', Arial, sans-serif;
+}
+
+body {
+    background: var(--color-fondo);
+    color: var(--color-texto);
+}
+
+/* ===== ENLACES ===== */
+a {
+    color: var(--color-primario);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transicion);
+}
+
+a:hover {
+    color: var(--color-acento);
+}
+
+/* ===== ALERTAS ===== */
+.success-alert { color: #28a745; font-weight: bold; }
+.error-alert { color: #dc3545; font-weight: bold; }
+
+/* ===== CONTENEDOR PRINCIPAL ===== */
+#container {
+    width: 85%;
+    margin: 20px auto;
+    background: white;
+    box-shadow: var(--sombra);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+/* ===== HEADER ===== */
+#header {
+    height: 140px;
+    background: var(--color-secundario);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+#logo a {
+    font-size: 36px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#logo a:hover {
+    color: var(--color-acento);
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* ===== MENU ===== */
+#menu {
+    background: var(--color-primario);
+    color: white;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 4px solid var(--color-acento);
+    border-radius: 8px;
+}
+
+#menu ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+#menu ul li {
+    line-height: 55px;
+    padding: 0 15px;
+}
+
+#menu a {
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: var(--transicion);
+}
+
+#menu a:hover {
+    background: var(--color-acento);
+}
+
+/* ===== CONTENIDO PRINCIPAL ===== */
+#content {
+    display: flex;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* ===== SIDEBAR ===== */
+#sidebar {
+    width: 25%;
+    background: white;
+    min-height: 500px;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: var(--sombra);
+}
+
+#sidebar h3 {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    background: var(--color-primario);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* ===== PRODUCTOS ===== */
+.product {
+    width: auto;
+    min-width: 30%;
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 15px;
+    border-radius: 8px;
+    background: white;
+    box-shadow: var(--sombra);
+    transition: var(--transicion);
+    display: flex;
+    flex-direction: column;
+}
+
+.product img {
+    height: 170px;
+    width: 155px;
+    border-radius: 5px;
+    transition: var(--transicion);
+}
+
+.product:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.product p {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* ===== BOTONES ===== */
+.button, input[type="button"], input[type="submit"], button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: var(--transicion);
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.button {
+    background: var(--color-primario);
+    color: white;
+}
+
+.button-red {
+    background: #dc3545;
+}
+
+.button:hover {
+    opacity: 0.9;
+}
+
+/* ===== FOOTER ===== */
+#footer {
+    text-align: center;
+    padding: 15px;
+    background: var(--color-secundario);
+    color: white;
+    margin-top: 20px;
+    border-radius: 8px;
+}
+
+/* ===== SIDEBAR MEJORADO ===== */
+#sidebar {
+    width: 300px;
+    background: #ffffff;
+    padding: 20px;
+    box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.1);
+    height: 100vh;
+    overflow-y: auto;
+    border-radius: 10px;
+}
+
+/* Bloques del sidebar */
+.block-aside {
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: var(--sombra);
+}
+
+.block-aside h3 {
+    margin: 0 0 10px;
+    font-size: 18px;
+    color: var(--color-secundario);
+}
+
+/* Enlaces del sidebar */
+.block-aside ul {
+    list-style: none;
+    padding: 0;
+}
+
+.block-aside ul li {
+    margin: 8px 0;
+}
+
+.block-aside ul li a {
+    text-decoration: none;
+    color: var(--color-primario);
+    font-weight: bold;
+    transition: var(--transicion);
+}
+
+.block-aside ul li a:hover {
+    color: var(--color-acento);
+}
+
+/* Formulario de login */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: var(--color-secundario);
+}
+
+form input {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form input[type="submit"] {
+    background: var(--color-primario);
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: var(--transicion);
+}
+
+form input[type="submit"]:hover {
+    background: var(--color-acento);
+}
+
+/* Cuerpo principal */
+.main {
+    width: 100%;
+    padding: 20px;
+}
+
+h1{
+    text-align: center;
+    width: 100%;
+}
+
+/* Estilos para mensajes */
+.block-aside p {
+    font-size: 14px;
+    color: var(--color-secundario);
+    background: #e9ecef;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+/* ===== ESTILOS GENERALES DEL CARRITO ===== */
+#cart-container {
+    width: 85%;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Título */
+#cart-container h1 {
+    text-align: center;
+    color: var(--color-secundario);
+    margin-bottom: 20px;
+}
+
+/* ===== TABLA DEL CARRITO ===== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--sombra);
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background: var(--color-primario);
+    color: white;
+    font-size: 16px;
+}
+
+td a {
+    color: var(--color-primario);
+    font-weight: bold;
+}
+
+td a:hover {
+    color: var(--color-acento);
+}
+
+/* ===== IMÁGENES DEL CARRITO ===== */
+.img-carrito {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 5px;
+    box-shadow: var(--sombra);
+}
+
+/* ===== BOTONES DE CANTIDAD ===== */
+.up-down {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+.up-down a {
+    display: inline-block;
+    padding: 5px 10px;
+    font-size: 16px;
+    font-weight: bold;
+    background: var(--color-primario);
+    color: white;
+    border-radius: 5px;
+    transition: var(--transicion);
+}
+
+.up-down a:hover {
+    background: var(--color-acento);
+}
+
+/* ===== BOTÓN ELIMINAR ===== */
+.button-carrito {
+    padding: 8px 12px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 5px;
+    transition: var(--transicion);
+    display: inline-block;
+}
+
+.button-red {
+    background: #dc3545;
+    color: white;
+}
+
+.button-red:hover {
+    background: #c82333;
+}
+
+/* ===== CONTENEDORES DE ACCIONES ===== */
+.delete-carrito, .carrito-total {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Botón Vaciar Carrito */
+.button-delete {
+    background: #dc3545;
+    padding: 10px 15px;
+    font-size: 16px;
+}
+
+.button-delete:hover {
+    background: #c82333;
+}
+
+/* Precio total */
+.carrito-total h3 {
+    font-size: 20px;
+    color: var(--color-secundario);
+    margin-bottom: 10px;
+}
+
+/* Botón Hacer Pedido */
+.button-pedido {
+    background: var(--color-primario);
+    padding: 12px 20px;
+    font-size: 18px;
+}
+
+.button-pedido:hover {
+    background: var(--color-acento);
+}
+
+.products-container {
+    display: flex;
+    flex-wrap: wrap; /* Permite que las tarjetas pasen a otra línea si no caben */
+    justify-content: space-between; /* Espaciado uniforme */
+    gap: 20px; /* Espacio entre las tarjetas */
+}
+
+
