@@ -1,6 +1,6 @@
 <?php
 
-require_once 'models/producto.php';
+require_once __DIR__ . '/../models/producto.php';
 
 class ProductoController
 {
@@ -9,7 +9,7 @@ class ProductoController
     {
         $producto = new Producto();
         $productos = $producto->getRandom(6);
-        require_once 'views/producto/destacados.php';
+        require_once __DIR__ . '/../views/producto/destacados.php';
     }
 
     // Muestra la información de un producto específico
@@ -21,7 +21,7 @@ class ProductoController
             $producto->setId($id);
             $prod = $producto->getProduct();
         }
-        require_once 'views/producto/ver.php';
+        require_once __DIR__ . '/../views/producto/ver.php';
     }
 
     // Muestra la gestión de productos (solo administradores)
@@ -30,13 +30,13 @@ class ProductoController
         Utils::isAdmin();
         $producto = new Producto();
         $productos = $producto->getAll();
-        require_once 'views/producto/gestion.php';
+        require_once __DIR__ . '/../views/producto/gestion.php';
     }
 
     // Muestra el formulario de creación de productos
     public function crear()
     {
-        require_once 'views/producto/crear.php';
+        require_once __DIR__ . '/../views/producto/crear.php';
     }
 
     // Guarda o edita un producto en la base de datos

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Tienda de camisetas</title>
+    <title>Tienda de calzados</title>
     <link rel="stylesheet" href="<?= base_url ?>assets/css/styles.css">
 </head>
 
@@ -14,7 +14,7 @@
     <div id="container">
         <header id="header">
             <div id="logo">
-                <a href="<?= base_url ?>">Tienda de Muebles</a>
+                <a href="<?= base_url ?>">Tienda de Calzados</a>
 
             </div>
         </header>

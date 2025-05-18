@@ -39,7 +39,7 @@ class Utils
 
     public static function showCategorias()
     {
-        require_once 'models/categoria.php';
+        require_once __DIR__ . '/../models/categoria.php';
 
         $categoria = new Categoria();
         return $categoria->getAll();
@@ -47,7 +47,7 @@ class Utils
 
     public static function showProductos()
     {
-        require_once 'models/producto.php';
+        require_once __DIR__ . '/../models/producto.php';
 
         $producto = new Producto();
         return $producto->getAll();

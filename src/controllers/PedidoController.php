@@ -1,14 +1,14 @@
 <?php
 
-require_once 'models/pedido.php';
-require_once 'models/producto.php';
+require_once __DIR__ . '/../models/pedido.php';
+require_once __DIR__ . '/../models/producto.php';
 
 class PedidoController
 {
     // Muestra el formulario para hacer un pedido
     public function hacer()
     {
-        require_once 'views/pedido/hacer.php';
+        require_once __DIR__ . '/../views/pedido/hacer.php';
     }
 
     // Agrega un pedido a la base de datos
@@ -55,7 +55,7 @@ class PedidoController
             $pedido_productos = new Pedido();
             $productos = $pedido_productos->getProductosByPedido($pedido->id);
         }
-        require_once 'views/pedido/confirmado.php';
+        require_once __DIR__ . '/../views/pedido/confirmado.php';
     }
 
     // Muestra los pedidos del usuario actual
@@ -68,7 +68,7 @@ class PedidoController
         $pedido->setUsuario_id($usuario_id);
         $pedidos = $pedido->getByUser();
         
-        require_once 'views/pedido/mis-pedidos.php';
+        require_once __DIR__ . '/../views/pedido/mis-pedidos.php';
     }
 
     // Muestra los detalles de un pedido específico
@@ -87,7 +87,7 @@ class PedidoController
         
         $productos_pedido = $pedido->getProductosByPedido($id);
         
-        require_once 'views/pedido/detalle.php';
+        require_once __DIR__ . '/../views/pedido/detalle.php';
     }
 
     // Gestión de pedidos para administradores
@@ -99,7 +99,7 @@ class PedidoController
         $pedido = new Pedido();
         $pedidos = $pedido->getAll();
         
-        require_once 'views/pedido/mis-pedidos.php';
+        require_once __DIR__ . '/../views/pedido/mis-pedidos.php';
     }
 
     // Actualiza el estado de un pedido

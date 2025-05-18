@@ -1,7 +1,7 @@
 <?php
 
-require_once 'models/categoria.php';
-require_once 'models/producto.php';
+require_once __DIR__ . '/../models/categoria.php';
+require_once __DIR__ . '/../models/producto.php';
 
 class CategoriaController
 {
@@ -11,7 +11,7 @@ class CategoriaController
         Utils::isAdmin();
         $categoria = new Categoria();
         $categorias = $categoria->getAll();
-        require_once 'views/categoria/index.php';
+        require_once __DIR__ . '/../views/categoria/index.php';
     }
 
     // Muestra una categoría específica y sus productos asociados
@@ -33,14 +33,14 @@ class CategoriaController
         $producto->setCategoria_id($id);
         $productos = $producto->getAllCategory();
 
-        require_once 'views/categoria/ver.php';
+        require_once __DIR__ . '/../views/categoria/ver.php';
     }
 
     // Muestra el formulario para crear una nueva categoría (requiere ser administrador)
     public function crear()
     {
         Utils::isAdmin();
-        require_once 'views/categoria/crear.php';
+        require_once __DIR__ . '/../views/categoria/crear.php';
     }
 
     // Guarda una nueva categoría en la base de datos

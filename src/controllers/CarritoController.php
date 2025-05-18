@@ -1,6 +1,6 @@
 <?php
 
-require_once 'models/producto.php';
+require_once __DIR__ . '/../models/producto.php';
 
 class CarritoController
 {
@@ -8,7 +8,7 @@ class CarritoController
     public function index()
     {
         $carrito = $_SESSION['carrito'] ?? [];
-        require_once 'views/carrito/index.php';
+        require_once __DIR__ . '/../views/carrito/index.php';
     }
 
     // Agrega un producto al carrito

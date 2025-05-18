@@ -1,6 +1,6 @@
 <?php
 
-require_once 'models/usuario.php';
+require_once __DIR__ . '/../models/usuario.php';
 
 class UsuarioController
 {
@@ -12,7 +12,7 @@ class UsuarioController
     // Muestra el formulario de registro
     public function register()
     {
-        require_once 'views/usuario/register.php';
+        require_once __DIR__ . '/../views/usuario/register.php';
     }
 
     // Procesa el registro de un nuevo usuario
