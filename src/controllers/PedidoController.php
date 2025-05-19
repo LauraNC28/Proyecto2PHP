@@ -115,7 +115,7 @@ class PedidoController
             
             header('Location:' . base_url . 'pedido/detalle&id=' . $_POST['pedido_id']);
         } else {
-            header('Location:' . base_url);
+            header('Location:' . index_url);
         }
     }
 }
