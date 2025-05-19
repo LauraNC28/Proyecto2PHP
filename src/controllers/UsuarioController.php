@@ -87,7 +87,7 @@ public function login()
         }
     }
     
-    header('Location: ' . base_url);
+    header('Location: ' . index_url);
 }
 
 // Cierra la sesión del usuario y elimina la cookie
@@ -100,7 +100,7 @@ public function logout()
         setcookie("user_session", "", time() - 3600, "/"); // Expira en el pasado
     }
 
-    header('Location: ' . base_url);
+    header('Location: ' . index_url);
 }
 
 // Verifica la inactividad del usuario

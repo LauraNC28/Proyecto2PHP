@@ -15,7 +15,7 @@ class CarritoController
     public function add()
     {
         if (!isset($_GET['id'])) {
-            header('Location:' . base_url);
+            header('Location:' . index_url);
             exit();
         }
 

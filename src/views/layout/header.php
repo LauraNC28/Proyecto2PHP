@@ -14,7 +14,7 @@
     <div id="container">
         <header id="header">
             <div id="logo">
-                <a href="<?= base_url ?>">Tienda de Calzados</a>
+                <a href="<?= index_url ?>">Tienda de Calzados</a>
 
             </div>
         </header>
@@ -24,7 +24,7 @@
         <nav id="menu">
             <ul>
                 <li>
-                    <a href="<?=base_url?>">Inicio</a>
+                    <a href="<?=index_url?>">Inicio</a>
                 </li>
                 <?php
                 $categorias = Utils::showCategorias();
