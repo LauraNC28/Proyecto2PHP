@@ -30,7 +30,7 @@ function enviarCorreoConfirmacion($emailCliente, $pedido, $productos)
         
         $body .= "<h3>Detalles del pedido:</h3><ul>";
        
-        while ($producto = $pedido->productos->fetch_assoc()) {
+        while ($producto = $productos->fetch_assoc()) {
             $body .= "<li>{$producto['nombre']} - Cantidad: {$producto['stock']} - Precio: {$producto['precio']}€</li>";
         }
         
