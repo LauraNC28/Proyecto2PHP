@@ -43,6 +43,26 @@ class CategoriaController
         require_once __DIR__ . '/../views/categoria/crear.php';
     }
 
+    public function eliminar() {
+        Utils::isAdmin();
+        if (!isset($_GET['id'])) {
+            header('Location:' . base_url . 'categoria/index');
+            exit();
+        }
+        $id = $_GET['id'];
+        $categoria = new Categoria();
+        $eliminado = $categoria->deleteOne($id);
+
+
+        if ($eliminado) {
+            $_SESSION['categoria_eliminada'] = "Categoría eliminada correctamente";
+        } else {
+            $_SESSION['categoria_eliminada'] = "No se puede eliminar la categoría porque tiene productos asociados";
+        }
+
+        header('Location:' . base_url . 'categoria/index');
+    }
+
     // Guarda una nueva categoría en la base de datos
     public function save()
     {
