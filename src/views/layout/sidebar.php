@@ -32,6 +32,7 @@
             <li><a href="<?= base_url ?>categoria/index">Gestionar categorias</a></li>
             <li><a href="<?= base_url ?>producto/gestion">Gestionar productos</a></li>
             <li><a href="<?= base_url ?>pedido/gestion">Gestionar pedidos</a></li>
+            <li><a href="<?= base_url ?>usuario/register">Gestionar usuarios</a></li>
             <?php endif; ?>
             <li><a href="<?= base_url ?>usuario/logout">Cerrar sesión</a></li>
             <?php else : ?>

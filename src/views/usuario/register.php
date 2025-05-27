@@ -25,7 +25,15 @@ if (isset($_SESSION['register']) && $_SESSION['register'] == 'completed') : ?>
     <label for="password">Contraseña: </label>
     <input type="password" name="password" required>
     <?php echo isset($_SESSION['errors']) ? Utils::showError($_SESSION['errors'], 'password') : ''; ?>
-
+    <?php if (isset($_SESSION['admin'])) : ?>
+    <label for="rol">Rol:</label>
+    <select name="rol">
+        <option value="user">Usuario</option>
+        <option value="admin">Administrador</option>
+    </select>
+    <input type="submit" value="Crear usuario">
+    <?php endif; ?>
     <input type="submit" value="Registrarse">
-    <?php Utils::deleteSession('errors'); ?>
+    <?php Utils::deleteSession('errors')?>
+
 </form>

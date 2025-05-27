@@ -24,6 +24,7 @@ class UsuarioController
             $email = $_POST['email'] ?? false;
             $password = $_POST['password'] ?? false;
 
+
             $errors = [];
 
             // Validación del nombre
@@ -52,6 +53,10 @@ class UsuarioController
                 $usuario->setApellidos($apellidos);
                 $usuario->setEmail($email);
                 $usuario->hashPassword($password);
+                if (isset($_SESSION['admin'])){
+                    $rol = $_POST['rol'] ?? false;
+                    $usuario->setRol($rol);
+                }
                 
                 $save = $usuario->save();
                 $_SESSION['register'] = $save ? 'completed' : 'failed';
