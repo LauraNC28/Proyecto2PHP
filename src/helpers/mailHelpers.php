@@ -12,13 +12,13 @@ function enviarCorreoConfirmacion($emailCliente, $pedido, $productos)
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com'; // Cambia esto según tu hosting
         $mail->SMTPAuth = true;
-        $mail->Username = 'lniecoc@g.educaand.es';
-        $mail->Password = '';
+        $mail->Username = 'nievaslaura82@gmail.com';
+        $mail->Password = 'zpwx sjgi wagk ncgc';
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
 
         // Destinatario
-        $mail->setFrom('lniecoc@g.educaand.es', 'Tu Tienda Online');
+        $mail->setFrom('nievaslaura82@gmail.com', 'Tu Tienda Online');
         $mail->addAddress($emailCliente);
 
         // Asunto y cuerpo del mensaje
@@ -43,6 +43,7 @@ function enviarCorreoConfirmacion($emailCliente, $pedido, $productos)
         return true;
 
     } catch (Exception $e) {
+        echo "Error al enviar correo: " . $mail->ErrorInfo;
         return false;
     }
 }
