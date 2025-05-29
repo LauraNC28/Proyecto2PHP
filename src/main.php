@@ -16,7 +16,6 @@ function show_Error(){
     $error = new ErrorController();
     $error->index();
 }
-
 // Procesar URL amigable
 if (isset($_GET['url'])) {
     $url = trim($_GET['url'], '/');
@@ -28,7 +27,6 @@ if (isset($_GET['url'])) {
     $controller = default_controller;
     $action = default_action;
 }
-
 
 if (isset($controller) && class_exists($controller)) {
     $controlador = new $controller();

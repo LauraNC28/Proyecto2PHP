@@ -46,7 +46,7 @@ class Usuario {
             '{$this->getApellidos()}', 
             '{$this->getEmail()}', 
             '{$this->getPassword()}', 
-            'user', 
+            '{$this->getRol()}', 
             NULL
         )";
         
