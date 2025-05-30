@@ -32,7 +32,7 @@ La estructura del proyecto es la siguiente:
 │   └── /img                 # Directorio para almacenar imágenes estáticas (logos, iconos, etc.)
 │
 ├── /config
-│   ├── db.php              # Configuraciones generales de la aplicación
+│   ├── db.php              # Configuraciones generales de la aplicación y conexión a la base de datos
 │   └── parameters.php      # Parámetros adicionales de configuración
 │
 ├── /controllers
@@ -50,10 +50,9 @@ La estructura del proyecto es la siguiente:
 │   ├── utils.php                 # Funciones auxiliares y utilidades generales
 │   └── mailHelpers.php           # Utilidad para enviar correos electrónicos usando PHPMailer
 │
-├── /uploads        # Directorio para almacenar imágenes subidas por los usuarios
+├── /uploads/images             # Directorio para almacenar imágenes subidas por los usuarios
 │
-├── /lib                    # Biblioteca de clases o funciones adicionales
-│   └── database.php        # Configuración y conexión a la base de datos    
+|
 ├── /models
 │   ├── categoria.php       # Modelo para gestionar categorías de productos
 │   ├── pedido.php          # Modelo para gestionar pedidos
@@ -66,7 +65,7 @@ La estructura del proyecto es la siguiente:
 │   ├── /carrito
 │   │   └── index.php       # Vista para mostrar el carrito de compras
 │   ├── /categoria
-│   │   ├── create.php      # Vista para crear una nueva categoría
+│   │   ├── crear.php       # Vista para crear una nueva categoría
 │   │   ├── index.php       # Vista para listar categorías
 │   │   └── ver.php         # Vista para ver detalles de una categoría
 │   ├── /layout
@@ -74,24 +73,21 @@ La estructura del proyecto es la siguiente:
 │   │   ├── header.php      # Cabecera común para todas las vistas
 │   │   └── sidebar.php     # Barra lateral común para todas las vistas
 │   ├── /pedido
-│   │   ├── confirmado.php  # Vista para confirmar un pedido realizado
-│   │   ├── detalle.php     # Vista para ver detalles de un pedido
-│   │   ├── hacer.php       # Vista para realizar un nuevo pedido
-│   │   └── misPedidos.php  # Vista para listar los pedidos del usuario
+│   │   ├── confirmado.php   # Vista para confirmar un pedido realizado
+│   │   ├── detalle.php      # Vista para ver detalles de un pedido
+│   │   ├── hacer.php        # Vista para realizar un nuevo pedido
+│   │   └── mis-pedidos.php  # Vista para listar los pedidos del usuario
 │   ├── /producto
-│   │   ├── create.php      # Vista para crear un nuevo producto
+│   │   ├── crear.php       # Vista para crear un nuevo producto
 │   │   ├── destacados.php  # Vista para mostrar productos destacados
 │   │   ├── gestion.php     # Vista para gestionar productos (CRUD)
 │   │   └── ver.php         # Vista para ver detalles de un producto
 │   └── /usuario
-│       ├── formregistro.php    # Vista para el formulario de registro de usuarios
-│       ├── editar.php          # Vista para editar los datos de un usuario existente
-│       ├── gestion.php         # Vista para gestionar usuarios (lista de usuarios)
-│       └── modificar.php        # Vista para modificar datos sensibles, como la contraseña
+│       ├── register.php    # Vista para el formulario de registro de usuarios
+│       ├── editar.php      # Vista para editar los datos de un usuario existente
+│       ├── gestion.php     # Vista para gestionar usuarios (lista de usuarios)
+│       └── login.php       # Vista para el formulario de inicio de sesión
 │
-├── .env                    # Archivos de entorno (configuraciones sensibles)
-│
-├── .gitignore              # Archivo para ignorar archivos en Git
 │
 ├── .htaccess               # Configuración del servidor Apache
 │
@@ -105,15 +101,13 @@ La estructura del proyecto es la siguiente:
 │
 ├── index.php               # Punto de entrada principal de la aplicación
 │
-└── indexProyecto.php       # Archivo adicional de entrada (opcional o alternativo)
+└── main.php                # Controlador frontal que gestiona el flujo principal de la aplicación.
 
 ---
 
 ## Explicación de los ficheros
 - **Ficheros principales**
   - index.php: Punto de entrada principal de la aplicación. Se encarga de cargar las dependencias y redirigir las        solicitudes a los controladores correspondientes.
-
-  - indexProyecto.php: Archivo adicional de entrada (opcional o alternativo).
 
   - .htaccess: Configuración del servidor Apache para redireccionar todas las solicitudes a index.php y habilitar URLs amigables.
 
@@ -122,9 +116,7 @@ La estructura del proyecto es la siguiente:
   - composer.lock: Versiones bloqueadas de las dependencias instaladas por Composer.
 
 - **Ficheros de configuración**
-  - config.php: Contiene configuraciones generales de la aplicación, como la URL base y constantes globales.
-
-  - parametros.php: Define parámetros adicionales de configuración, como claves de API o ajustes específicos del servidor.
+  - parameters.php: Define parámetros adicionales de configuración, como claves de API o ajustes específicos del servidor.
 
 - **Ficheros de modelos**
   - categoria.php: Modelo que interactúa con la tabla de categorías en la base de datos.
@@ -151,7 +143,7 @@ La estructura del proyecto es la siguiente:
 - **Ficheros de vistas**
   - /carrito/index.php: Muestra el contenido del carrito de compras.
 
-  - /categoria/create.php: Formulario para crear una nueva categoría.
+  - /categoria/crear.php: Formulario para crear una nueva categoría.
 
   - /categoria/index.php: Lista todas las categorías disponibles.
 
@@ -171,7 +163,7 @@ La estructura del proyecto es la siguiente:
 
   - /pedido/misPedidos.php: Lista los pedidos realizados por el usuario.
 
-  - /producto/create.php: Formulario para crear un nuevo producto.
+  - /producto/crear.php: Formulario para crear un nuevo producto.
 
   - /producto/destacados.php: Muestra productos destacados.
 
@@ -188,20 +180,16 @@ La estructura del proyecto es la siguiente:
   - /usuario/modificar.php: Formulario para modificar datos sensibles, como la contraseña.
 
 - **Ficheros de utilidades**
-  - utilidades.php: Funciones auxiliares que se utilizan en diferentes partes de la aplicación, como validación de datos, formateo de fechas o cálculos.
+  - utils.php: Funciones auxiliares que se utilizan en diferentes partes de la aplicación, como validación de datos, formateo de fechas o cálculos.
 
-  - email.php: Utiliza la librería PHPMailer para enviar correos electrónicos desde la aplicación.
+  - mailHelpers.php: Utiliza la librería PHPMailer para enviar correos electrónicos desde la aplicación.
    
   - autoload.php: Autoloader para cargar clases automáticamente.
 
 - **Otros ficheros**
-  - .gitignore: Especifica archivos y directorios que deben ser ignorados por Git.
-
   - documentacion.md: Documentación del proyecto.
 
-  - /assets/css/estilos.css: Archivo CSS que define los estilos visuales de la aplicación.
-
-  - .env: Directorio para archivos de entorno (configuraciones sensibles).
+  - /assets/css/styles.css: Archivo CSS que define los estilos visuales de la aplicación.
 
 ---
 

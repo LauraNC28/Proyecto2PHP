@@ -58,4 +58,20 @@ class Categoria
         $sql = "INSERT INTO categorias (nombre) VALUES ('{$this->nombre}')";
         return $this->db->query($sql);
     }
+
+    
+    public function deleteOne($id){
+        $sqlCheck = "SELECT COUNT(*) as total FROM productos WHERE categoria_id={$id}";
+        $result = $this->db->query($sqlCheck);
+        $row = $result->fetch_assoc();
+
+        if ($row['total'] > 0) {
+            // Hay productos asociados, no eliminar
+            return false;
+        }
+
+        // No hay productos asociados, eliminar la categoría
+        $sql = "DELETE FROM categorias WHERE id={$id}";
+        return $this->db->query($sql);
+    }
 }

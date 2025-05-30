@@ -6,8 +6,7 @@ require_once __DIR__ . '/../models/producto.php';
 class CategoriaController
 {
     // Muestra todas las categorías (requiere ser administrador)
-    public function index()
-    {
+    public function index() {
         Utils::isAdmin();
         $categoria = new Categoria();
         $categorias = $categoria->getAll();
@@ -15,8 +14,7 @@ class CategoriaController
     }
 
     // Muestra una categoría específica y sus productos asociados
-    public function ver()
-    {
+    public function ver() {
         if (!isset($_GET['id'])) {
             header('Location:' . base_url . 'categoria/index');
             exit();
@@ -43,9 +41,29 @@ class CategoriaController
         require_once __DIR__ . '/../views/categoria/crear.php';
     }
 
+    public function eliminar() {
+        Utils::isAdmin();
+        if (!isset($_GET['id'])) {
+            header('Location:' . base_url . 'categoria/index');
+            exit();
+        }
+        $id = $_GET['id'];
+        $categoria = new Categoria();
+        $eliminado = $categoria->deleteOne($id);
+
+
+        if ($eliminado) {
+            $_SESSION['categoria_eliminada'] = "Categoría eliminada correctamente";
+        } else {
+            $_SESSION['categoria_eliminada'] = "No se puede eliminar la categoría porque tiene productos asociados";
+        }
+
+        header('Location:' . base_url . 'categoria/index');
+    }
+
+    
     // Guarda una nueva categoría en la base de datos
-    public function save()
-    {
+    public function save() {
         Utils::isAdmin();
         
         if (!empty($_POST['name'])) {
