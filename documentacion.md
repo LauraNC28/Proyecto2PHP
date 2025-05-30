@@ -84,8 +84,6 @@ La estructura del proyecto es la siguiente:
 │   │   └── ver.php         # Vista para ver detalles de un producto
 │   └── /usuario
 │       ├── register.php    # Vista para el formulario de registro de usuarios
-│       ├── editar.php      # Vista para editar los datos de un usuario existente
-│       ├── gestion.php     # Vista para gestionar usuarios (lista de usuarios)
 │       └── login.php       # Vista para el formulario de inicio de sesión
 │
 │
@@ -161,7 +159,7 @@ La estructura del proyecto es la siguiente:
 
   - /pedido/hacer.php: Formulario para realizar un nuevo pedido.
 
-  - /pedido/misPedidos.php: Lista los pedidos realizados por el usuario.
+  - /pedido/mis-pedidos.php: Lista los pedidos realizados por el usuario.
 
   - /producto/crear.php: Formulario para crear un nuevo producto.
 
@@ -171,13 +169,7 @@ La estructura del proyecto es la siguiente:
 
   - /producto/ver.php: Muestra los detalles de un producto específico.
 
-  - /usuario/formregistro.php: Formulario de registro de usuarios.
-
-  - /usuario/editar.php: Formulario para editar los datos de un usuario existente.
-
-  - /usuario/gestion.php: Lista de usuarios para administradores, con opciones de gestión.
-
-  - /usuario/modificar.php: Formulario para modificar datos sensibles, como la contraseña.
+  - /usuario/register.php: Formulario de registro de usuarios.
 
 - **Ficheros de utilidades**
   - utils.php: Funciones auxiliares que se utilizan en diferentes partes de la aplicación, como validación de datos, formateo de fechas o cálculos.

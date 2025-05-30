@@ -53,14 +53,30 @@ class UsuarioController
                 $usuario->setEmail($email);
                 $usuario->hashPassword($password);
                 
+                 // Rol (solo admins pueden asignar)
                 if (isset($_SESSION['admin'])){
                     $rol = $_POST['rol'] ?? false;
                     $usuario->setRol($rol);
                 }
 
-                
+                // Generar token único para verificación
+                $token = bin2hex(random_bytes(16));
+                $usuario->setTokenVerificacion($token);
+
                 $save = $usuario->save();
-                $_SESSION['register'] = $save ? 'completed' : 'failed';
+
+                if ($save) {
+                    $_SESSION['register'] = 'pending'; // aún no verificado
+    
+                    // Enviar correo de verificación
+                    require_once 'helpers/mailHelpers.php';
+                    enviarCorreoVerificacion($email, $token);
+                
+                } else {
+                    $_SESSION['register'] = 'failed';
+                }
+                //$_SESSION['register'] = $save ? 'completed' : 'failed';
+            
             } else {
                 $_SESSION['register'] = 'failed';
                 $_SESSION['errors'] = $errors;
@@ -81,15 +97,20 @@ public function login()
         $identity = $usuario->login();
 
         if (!empty($identity)) {
-            $_SESSION['identity'] = $identity;
-            if ($identity->rol == 'admin') {
-                $_SESSION['admin'] = true;
-            }
+            if ($identity->email_verificado == 1) {
+                $_SESSION['identity'] = $identity;
+                if ($identity->rol == 'admin') {
+                    $_SESSION['admin'] = true;
+                }
+                
+                // Crear una cookie de sesión con duración de 30 minutos
+                setcookie("user_session", session_id(), time() + (30 * 60), "/");
             
-            // Crear una cookie de sesión con duración de 30 minutos
-            setcookie("user_session", session_id(), time() + (30 * 60), "/");
+            } else {
+                $_SESSION['error_login'] = 'Debes verificar tu correo antes de iniciar sesión.';
+            }
         } else {
-            $_SESSION['error_login'] = '¡Ha habido un error al iniciar sesión!';
+            $_SESSION['error_login'] = 'Credenciales incorrectas.';
         }
     }
     
@@ -124,10 +145,25 @@ public static function checkSessionTimeout()
 }
 
 
+public function verificar()
+{
+    if (isset($_GET['token'])) {
+        $token = $_GET['token'];
+
+        $usuario = new Usuario();
+        $verificado = $usuario->verificarEmail($token);
+
+        if ($verificado) {
+            $_SESSION['verificado'] = 'ok';
+        } else {
+            $_SESSION['verificado'] = 'fail';
+        }
+    } else {
+        $_SESSION['verificado'] = 'fail';
+    }
+
+    require_once __DIR__ . '/../views/usuario/verificacion.php';
+}
 
 
-
-
-
-    
 }

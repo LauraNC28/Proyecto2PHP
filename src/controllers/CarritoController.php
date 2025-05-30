@@ -49,6 +49,9 @@ class CarritoController
             }
         }
 
+        // Guardar el carrito en la cookie (durará 30 días)
+        setcookie('carrito', json_encode($_SESSION['carrito']), time() + (30 * 86400), "/", "", false, true);
+
         header('Location:' . base_url . "carrito/index");
     }
 
@@ -57,7 +60,11 @@ class CarritoController
     {
         if (isset($_GET['index'])) {
             $_SESSION['carrito'][$_GET['index']]['unidades']++;
+
+            // Guardar la sesión actualizada en la cookie
+            setcookie('carrito', json_encode($_SESSION['carrito']), time() + (30 * 86400), "/", "", false, true);
         }
+
         header('Location:' . base_url . "carrito/index");
     }
 
@@ -72,7 +79,11 @@ class CarritoController
             if ($_SESSION['carrito'][$index]['unidades'] <= 0) {
                 unset($_SESSION['carrito'][$index]);
             }
+
+            // Guardar la sesión actualizada en la cookie
+            setcookie('carrito', json_encode($_SESSION['carrito']), time() + (30 * 86400), "/", "", false, true);
         }
+        
         header('Location:' . base_url . "carrito/index");
     }
 
@@ -81,6 +92,8 @@ class CarritoController
     {
         if (isset($_GET['index'])) {
             unset($_SESSION['carrito'][$_GET['index']]);
+            // Guardar la sesión actualizada en la cookie
+            setcookie('carrito', json_encode($_SESSION['carrito']), time() + (30 * 86400), "/", "", false, true);
         }
         header('Location:' . base_url . "carrito/index");
     }
@@ -89,6 +102,9 @@ class CarritoController
     public function delete_all()
     {
         $_SESSION['carrito'] = [];
+
+        setcookie('carrito', '', time() - 3600, "/", "", false, true); // Eliminar la cookie
+
         header('Location:' . base_url . "carrito/index");
     }
 }

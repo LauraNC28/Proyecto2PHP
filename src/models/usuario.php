@@ -10,6 +10,10 @@ class Usuario {
     private $imagen;
     private $db;
 
+    private $email_verificado;
+
+    private $token_verificacion;
+
     public function __construct() {
         $this->db = Database::connect();
     }
@@ -22,6 +26,8 @@ class Usuario {
     public function getPassword() { return $this->password; }
     public function getRol() { return $this->rol; }
     public function getImagen() { return $this->imagen; }
+    public function getEmailVerificado() { return $this->email_verificado; }
+    public function getTokenVerificacion() { return $this->token_verificacion; }
 
     // Métodos SETTERS
     public function setId($id) { $this->id = $id; }
@@ -38,22 +44,32 @@ class Usuario {
     public function setRol($rol) { $this->rol = $this->db->real_escape_string($rol); }
     public function setImagen($imagen) { $this->imagen = $this->db->real_escape_string($imagen); }
 
+    public function setEmailVerificado($estado) {
+        $this->email_verificado = (int) $estado;
+    }
+    
+    public function setTokenVerificacion($token) {
+        $this->token_verificacion = $this->db->real_escape_string($token);
+    }
+
+
     // Guardar usuario en la base de datos
     public function save() {
-        $sql = "INSERT INTO usuarios VALUES (
-            NULL, 
-            '{$this->getNombre()}', 
-            '{$this->getApellidos()}', 
-            '{$this->getEmail()}', 
-            '{$this->getPassword()}', 
-            '{$this->getRol()}', 
-            NULL
+        $rol = $this->rol ?? 'user';
+        $sql = "INSERT INTO usuarios (nombre, apellidos, email, password, rol, imagen, email_verificado, token_verificacion) VALUES (
+            '{$this->getNombre()}',
+            '{$this->getApellidos()}',
+            '{$this->getEmail()}',
+            '{$this->getPassword()}',
+            '{$rol}',
+            '{$this->getImagen()}',
+            0,
+            '{$this->getTokenVerificacion()}'
         )";
-        
-        $save = $this->db->query($sql);
 
+        $save = $this->db->query($sql);
         return $save ? true : false;
-    }
+    }   
 
     // Iniciar sesión verificando email y contraseña
     public function login() {
@@ -76,5 +92,11 @@ class Usuario {
         }
         
         return $resultado;
+    }
+
+    public function verificarEmail($token) {
+        $token = $this->db->real_escape_string($token);
+        $sql = "UPDATE usuarios SET email_verificado = 1, token_verificacion = NULL WHERE token_verificacion = '$token'";
+        return $this->db->query($sql);
     }
 }
