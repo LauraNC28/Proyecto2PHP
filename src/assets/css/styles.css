@@ -1,11 +1,11 @@
 /* ===== VARIABLES GLOBALES ===== */
 :root {
-    --color-primario: #007bff;
-    --color-secundario: #333;
-    --color-texto: #444;
-    --color-fondo: #f8f9fa;
-    --color-acento: #17a2b8;
-    --sombra: 0 4px 8px rgba(0, 0, 0, 0.1);
+    --color-primario: #4A67A2; /* Un azul denim profundo, elegante y versátil */
+    --color-secundario: #2C3E50; /* Gris azulado oscuro para un toque sofisticado */
+    --color-texto: #34495E; /* Un gris azulado más suave para el texto general */
+    --color-fondo: #ECF0F1; /* Un blanco roto o gris muy claro, que da una sensación de amplitud */
+    --color-acento: #E74C3C; /* Un rojo anaranjado vibrante, para destacar elementos importantes y CTAs */
+    --sombra: 0 4px 12px rgba(0, 0, 0, 0.15); /* Sombra ligeramente más pronunciada para profundidad */
     --transicion: all 300ms ease-in-out;
 }
 
@@ -35,8 +35,8 @@ a:hover {
 }
 
 /* ===== ALERTAS ===== */
-.success-alert { color: #28a745; font-weight: bold; }
-.error-alert { color: #dc3545; font-weight: bold; }
+.success-alert { color: #27AE60; font-weight: bold; } /* Verde para éxito */
+.error-alert { color: var(--color-acento); font-weight: bold; } /* Usamos el color de acento para errores */
 
 /* ===== CONTENEDOR PRINCIPAL ===== */
 #container {
@@ -183,7 +183,7 @@ a:hover {
 }
 
 .button-red {
-    background: #dc3545;
+    background: var(--color-acento); /* Usamos el color de acento para el botón rojo */
 }
 
 .button:hover {
@@ -389,12 +389,12 @@ td a:hover {
 }
 
 .button-red {
-    background: #dc3545;
+    background: var(--color-acento); /* Usamos el color de acento para el botón rojo */
     color: white;
 }
 
 .button-red:hover {
-    background: #c82333;
+    background: #CD5C5C; /* Un rojo ligeramente más oscuro para el hover */
 }
 
 /* ===== CONTENEDORES DE ACCIONES ===== */
@@ -405,13 +405,13 @@ td a:hover {
 
 /* Botón Vaciar Carrito */
 .button-delete {
-    background: #dc3545;
+    background: var(--color-acento); /* Usamos el color de acento para el botón de borrar */
     padding: 10px 15px;
     font-size: 16px;
 }
 
 .button-delete:hover {
-    background: #c82333;
+    background: #CD5C5C; /* Un rojo ligeramente más oscuro para el hover */
 }
 
 /* Precio total */
@@ -429,14 +429,12 @@ td a:hover {
 }
 
 .button-pedido:hover {
-    background: var(--color-acento);
+    background: #5D7EB4; /* Un azul ligeramente más oscuro para el hover */
 }
 
 .products-container {
     display: flex;
-    flex-wrap: wrap; /* Permite que las tarjetas pasen a otra línea si no caben */
-    justify-content: space-between; /* Espaciado uniforme */
-    gap: 20px; /* Espacio entre las tarjetas */
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
 }
-
-

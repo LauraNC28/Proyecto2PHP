@@ -106,7 +106,9 @@ CREATE TABLE `productos` (
   `stock` int(255) NOT NULL,
   `oferta` varchar(2) DEFAULT NULL,
   `fecha` date NOT NULL,
-  `imagen` varchar(255) DEFAULT NULL
+  `imagen` varchar(255) DEFAULT NULL,
+  `email_verificado` TINYINT(1) DEFAULT 0,
+  `token_verificacion` VARCHAR(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
