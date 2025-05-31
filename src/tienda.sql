@@ -140,7 +140,9 @@ CREATE TABLE `usuarios` (
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `rol` varchar(20) DEFAULT NULL,
-  `imagen` varchar(255) DEFAULT NULL
+  `imagen` varchar(255) DEFAULT NULL,
+  `email_verificado` TINYINT(1) DEFAULT 0,
+  `token_verificacion` VARCHAR(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
