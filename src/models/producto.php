@@ -1,24 +1,53 @@
 <?php
 
+/**
+ * Clase Producto
+ *
+ * Modelo que gestiona las operaciones relacionadas con productos
+ * en la base de datos: crear, leer, actualizar, eliminar, y listar.
+ */
 class Producto
 {
+    /** @var int|null ID del producto */
     private $id;
+
+    /** @var int|null ID de la categoría a la que pertenece el producto */
     private $categoria_id;
+
+    /** @var string|null Nombre del producto */
     private $nombre;
+
+    /** @var string|null Descripción del producto */
     private $descripcion;
+
+    /** @var float Precio del producto */
     private $precio;
+
+    /** @var int Stock disponible */
     private $stock;
+
+    /** @var string|null Oferta o promoción del producto */
     private $oferta;
+
+    /** @var string|null Ruta o nombre de la imagen del producto */
     private $imagen;
+
+    /** @var string|null Fecha de creación del producto */
     private $fecha;
+
+    /** @var mysqli Conexión a la base de datos */
     private $db;
 
+    /**
+     * Constructor que establece la conexión a la base de datos.
+     */
     public function __construct()
     {
         $this->db = Database::connect();
     }
 
-    // Getters y Setters con validaciones
+    // ───────────────────── GETTERS Y SETTERS ─────────────────────
+
     public function getId() { return $this->id; }
     public function setId($id) { $this->id = is_numeric($id) ? (int) $id : null; }
 
@@ -46,14 +75,22 @@ class Producto
     public function getFecha() { return $this->fecha; }
     public function setFecha($fecha) { $this->fecha = $fecha; }
 
-    // Obtener todos los productos
+    // ───────────────────── MÉTODOS DE OPERACIÓN ─────────────────────
+
+    /**
+     * Obtiene todos los productos de la base de datos.
+     * @return mysqli_result
+     */
     public function getAll()
     {
         $sql = "SELECT * FROM productos ORDER BY id DESC";
         return $this->db->query($sql);
     }
 
-    // Obtener productos por categoría
+    /**
+     * Obtiene todos los productos de una categoría específica.
+     * @return mysqli_result|false Lista de productos o false si no hay categoría válida.
+     */
     public function getAllCategory()
     {
         if ($this->categoria_id === null) {
@@ -69,7 +106,12 @@ class Producto
         return $this->db->query($sql);
     }
 
-    // Obtener productos aleatorios
+    /**
+     * Devuelve un número aleatorio de productos.
+     *
+     * @param int $limit Número de productos a devolver.
+     * @return mysqli_result
+     */
     public function getRandom($limit)
     {
         $limit = is_numeric($limit) ? (int) $limit : 6;
@@ -77,7 +119,10 @@ class Producto
         return $this->db->query($sql);
     }
 
-    // Obtener un producto por ID
+    /**
+     * Obtiene un producto específico por su ID.
+     * @return object|null Objeto del producto o null si no se encuentra.
+     */
     public function getProduct()
     {
         if ($this->id === null) {
@@ -89,7 +134,10 @@ class Producto
         return $producto ? $producto->fetch_object() : null;
     }
 
-    // Guardar un nuevo producto
+    /**
+     * Guarda un nuevo producto en la base de datos.
+     * @return bool True si se insertó correctamente.
+     */
     public function save()
     {
         $sql = "INSERT INTO productos (categoria_id, nombre, descripcion, precio, stock, oferta, fecha, imagen) 
@@ -98,7 +146,10 @@ class Producto
         return $this->db->query($sql);
     }
 
-    // Editar un producto existente
+    /**
+     * Edita un producto existente.
+     * @return bool True si la edición fue exitosa.
+     */
     public function edit()
     {
         if ($this->id === null) {
@@ -106,12 +157,12 @@ class Producto
         }
 
         $sql = "UPDATE productos SET 
-                categoria_id = '{$this->categoria_id}', 
-                nombre = '{$this->nombre}', 
-                descripcion = '{$this->descripcion}', 
-                precio = '{$this->precio}', 
-                stock = {$this->stock}, 
-                oferta = '{$this->oferta}'";
+                    categoria_id = '{$this->categoria_id}', 
+                    nombre = '{$this->nombre}', 
+                    descripcion = '{$this->descripcion}', 
+                    precio = '{$this->precio}', 
+                    stock = {$this->stock}, 
+                    oferta = '{$this->oferta}'";
 
         if ($this->imagen !== null) {
             $sql .= ", imagen='{$this->imagen}'";
@@ -122,7 +173,10 @@ class Producto
         return $this->db->query($sql);
     }
 
-    // Eliminar un producto
+    /**
+     * Elimina un producto por su ID.
+     * @return bool True si se eliminó correctamente.
+     */
     public function delete()
     {
         if ($this->id === null) {
@@ -133,4 +187,3 @@ class Producto
         return $this->db->query($sql);
     }
 }
-

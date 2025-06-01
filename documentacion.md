@@ -83,8 +83,9 @@ La estructura del proyecto es la siguiente:
 │   │   ├── gestion.php     # Vista para gestionar productos (CRUD)
 │   │   └── ver.php         # Vista para ver detalles de un producto
 │   └── /usuario
-│       ├── register.php    # Vista para el formulario de registro de usuarios
-│       └── login.php       # Vista para el formulario de inicio de sesión
+│       ├── register.php        # Vista para el formulario de registro de usuarios
+|       ├── verificacion.php    # Vista para la verificación del correo de usuarios
+│       └── login.php           # Vista para el formulario de inicio de sesión
 │
 │
 ├── .htaccess               # Configuración del servidor Apache
