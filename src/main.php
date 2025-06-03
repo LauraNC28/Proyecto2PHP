@@ -1,5 +1,6 @@
 <?php
 
+ob_start();
 // Inicia la sesión para el manejo de variables de usuario, login, carrito, etc.
 session_start();
 

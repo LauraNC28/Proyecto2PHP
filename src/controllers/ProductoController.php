@@ -146,7 +146,7 @@ class ProductoController
             $producto->setId($_GET['id']);
             $prod = $producto->getProduct();
 
-            require_once 'views/producto/crear.php';
+            require_once __DIR__ . '/../views/producto/crear.php';
         } else {
             header('Location:' . base_url . 'producto/gestion');
         }
